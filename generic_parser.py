@@ -43,4 +43,20 @@ import pandas as pd
 #data = pd.read_csv(my_csv_file)
 data = pd.read_csv(my_csv_file, sep='\s+|,',header=None) #works for data without header
 print(data.head())
-print(data.shape())
+print(data.shape)
+
+#2 Organize file to access columns and rows
+#2a. access any row "Pandas access rows"
+print(data.iloc[3:5,:])
+#2b. access any column "Pandas access column"
+print(data.iloc[:,3])
+#2c access any data
+print(data.iloc[0,0])
+
+#3. Compute Statistics
+#a. Mean
+
+import numpy as np
+
+print(np.mean(data))
+print(np.std(data))
