@@ -44,9 +44,35 @@ for column in df.columns:  # Loop over all columns
     sns.distplot(x='StringLabel', y=column, data=df)  # column is chosen here
     plt.savefig('{}.pdf'.format(column), bbox_inches='tight')  # filename chosen here
 
+1.(E) Visualize the data, 2-features (columns) at a time, i.e. scatter plot, and save the figures to files
+??????????
+*
+*
+*
 
+2. (intermediate) F) Pseudocode for adding header data to table
 
+df = pd.DataFrame(np.array(data)), columns=['x', 'y1', 'y2', 'y3', 'y4'.....])
+df = df.sort_values('x')
 
+3. (reach) G) Pseudocode for an additional type of plot (Google to find plot types of interest) for visualizing 2 or more of the features at a time.
+????????
+
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
 
 
 
