@@ -58,13 +58,13 @@ df = pd.DataFrame(np.array(data))
 
 for column in df.columns:  # Loop over all columns 
 
-   sns.set()
+      sns.set()
+   
+      fig, ax = plt.subplots()
     
-   fig, ax = plt.subplots()
+      sns.distplot(x='StringLabel', y=column, data=df)  # column is chosen here
     
-   sns.distplot(x='StringLabel', y=column, data=df)  # column is chosen here
-    
-   plt.savefig('{}.pdf'.format(column), bbox_inches='tight')  # filename chosen here
+      plt.savefig('{}.pdf'.format(column), bbox_inches='tight')  # filename chosen here
 
 1.(E) Visualize the data, 2-features (columns) at a time, i.e. scatter plot, and save the figures to files
 ??????????
