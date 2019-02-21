@@ -55,6 +55,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 df = pd.DataFrame(np.array(data))
+
 for column in df.columns:  # Loop over all columns 
 
    sns.set()
