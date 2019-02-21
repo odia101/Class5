@@ -54,15 +54,16 @@ import matplotlib.pyplot as plt
 
 import seaborn as sns
 
+df = pd.DataFrame(np.array(data))
 for column in df.columns:  # Loop over all columns 
 
-    sns.set()
+   sns.set()
     
-    fig, ax = plt.subplots()
+   fig, ax = plt.subplots()
     
-    sns.distplot(x='StringLabel', y=column, data=df)  # column is chosen here
+   sns.distplot(x='StringLabel', y=column, data=df)  # column is chosen here
     
-    plt.savefig('{}.pdf'.format(column), bbox_inches='tight')  # filename chosen here
+   plt.savefig('{}.pdf'.format(column), bbox_inches='tight')  # filename chosen here
 
 1.(E) Visualize the data, 2-features (columns) at a time, i.e. scatter plot, and save the figures to files
 ??????????
@@ -73,9 +74,9 @@ for column in df.columns:  # Loop over all columns
 
 2. (intermediate)  Pseudocode for adding header data to table
 
-df = pd.DataFrame(np.array(data)), columns=['x', 'y1', 'y2', 'y3', 'y4'.....])
+df1 = pd.DataFrame(df, columns=['x', 'y1', 'y2', 'y3', 'y4'.....])
 
-df = df.sort_values('x')
+df1 = df1.sort_values('x')
 
 3. (reach) Pseudocode for an additional type of plot (Google to find plot types of interest) for visualizing 2 or more of the features at a time.
 ????????
