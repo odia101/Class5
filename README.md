@@ -74,6 +74,7 @@ for column in df.columns:  # Loop over all columns
 2. (intermediate)  Pseudocode for adding header data to table
 
 df = pd.DataFrame(np.array(data)), columns=['x', 'y1', 'y2', 'y3', 'y4'.....])
+
 df = df.sort_values('x')
 
 3. (reach) Pseudocode for an additional type of plot (Google to find plot types of interest) for visualizing 2 or more of the features at a time.
