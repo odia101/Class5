@@ -2,85 +2,108 @@
 
 PSEUDOCODE FOR ANALYSIS ON DIABETES DATA
 
-1(A). Accept arbitrary filename as argument and load the file
+1. Accept arbitrary filename as argument and load the file
 
-import argparse from ArgumentParser
+1.1 import argparse from ArgumentParser
 
-Initialize parser
+1.1.1 Initialize parser
 
-parser = argparse.ArgumentParser(description = '?')
+1.1.2 parser = argparse.ArgumentParser(description = '?')
 
-Add positional parameter
+1.1.3 Add positional parameter
 
-parser.add_argument('csvfile', help = '?')
+1.1.4 parser.add_argument('csvfile', help = '?')
 
-Parse the argument
+1.1.5 Parse the argument
 
-parsed_args = parser.parse_args()
+1.1.6 parsed_args = parser.parse_args()
 
-print parsed_args
+1.1.7 print parsed_args
 
-print parsed_args.csvfile
+1.1.8 print parsed_args.csvfile
 
-my_csv_file = parsed_args.csvfile
+1.1.9 my_csv_file = parsed_args.csvfile
 
-assert os.path.isfile(my_csv_file), "error message"
+1.1.10 use assert to verify file validity 
 
-print("No Error Message")
+      os.path.isfile(my_csv_file), "error message"
 
-1(B). Organize to access columns and rows
+      print("No Error Message")
 
-import pandas as pd
 
-data = pd.read.csv (my_csv_file, sep=\s+|,',header=None)
+2. Organize to access columns and rows
 
-print (data.head())
+2.1 import pandas as pd
 
-print (data.shape)
+2.1.1 data = pd.read.csv (my_csv_file, sep=\s+|,',header=None)
 
-print(data.iloc[0,0])
+2.1.2 print the data table using the data.head function
 
-1.(C) Compute Summary Statistics
+2.1.3 print the shape of data using (data.shape)
 
-import numpy as np
+2.1.4 View any row or column using iloc for pandas (data.iloc[0,0])
 
-print(np.mean(data))
 
-print(np.std(data))
+3. Compute Summary Statistics
 
-1.(D) Visualize the data, 1-feature (column) at a time, i.e. histogram, and save the figures to files
+3.1 import numpy as np
 
-import matplotlib.pyplot as plt
+3.1.1 compute mean with numpy function
 
-import seaborn as sns
+3.1.2 compute standard deviation with standard deviation
 
-df = pd.DataFrame(np.array(data))
 
-for column in df.columns:  # Loop over all columns 
+4. Visualize the data, 1-feature (column) at a time, i.e. histogram, and save the figures to files
 
-      sns.set()
+4.1 import matplotlib.pyplot as plt
+
+4.1.1 import seaborn as sns
+
+4.1.2 Assign variable to data or array df = pd.DataFrame(np.array(data))
+
+4.1.3 Visualize each column at a time by Histogram plot and save figures to files.
+
+      for column in df.columns:  # Loop over all columns 
+
+            sns.set()
    
-      fig, ax = plt.subplots()
+            fig, ax = plt.subplots()
     
-      sns.distplot(x='StringLabel', y=column, data=df)  # column is chosen here
+            sns.distplot(x='StringLabel', y=column, data=df)  # column is chosen here
     
-      plt.savefig('{}.pdf'.format(column), bbox_inches='tight')  # filename chosen here
+            plt.savefig('{}.pdf'.format(column), bbox_inches='tight')  # filename chosen here
 
-1.(E) Visualize the data, 2-features (columns) at a time, i.e. scatter plot, and save the figures to files
-??????????
+5. Visualize the data, 2-features (columns) at a time, i.e. scatter plot, and save the figures to files
 
-*
-*
-*
+      for column in df.columns
+      
+            plot one column against other columns
+            
+            do same plot for other columns without repeating already plotted columns
+            
+            plt.savefig to save files
 
-2. (intermediate)  Pseudocode for adding header data to table
 
-df1 = pd.DataFrame(df, columns=['x', 'y1', 'y2', 'y3', 'y4'.....])
+6. Adding header data to table (Intermediate)
 
-df1 = df1.sort_values('x')
+6.1 df1 = pd.DataFrame(df, columns=['x', 'y1', 'y2', 'y3', 'y4'.....])
 
-3. (reach) Pseudocode for an additional type of plot (Google to find plot types of interest) for visualizing 2 or more of the features at a time.
-????????
+6.2 df1 = df1.sort_values('x')
+
+
+7. Additional type of plot for visualizing 2 or more of the features at a time (REACH).
+
+7.1 Visualize data using violin plot
+
+7.1.1 import seaborn as sns
+
+7.1.2 sns.violin plot
+
+      plot one column against other columns
+      
+      do same plot for other columns without repeating already plotted columns
+      
+      plt.savefig to save files
 
 *
 *
