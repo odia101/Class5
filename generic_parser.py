@@ -1,16 +1,3 @@
-#1. Load a dataset from a file
-#2. "organize" that file, so we can access columns *or* rows of it easily
-#3. Compute some "summary statistics" about the dataset
-#4. print those summary statistics
-
-
-#1. Load a dataset
- # a. accept arbitrary filename as argument
- # b. load the file
-
-#Solution
-# 1(a)
-
 from argparse import ArgumentParser
 
 parser = ArgumentParser(description='A CSV reader + stats makes')
@@ -40,23 +27,60 @@ print("The file exists")
 
 import pandas as pd
 
-#data = pd.read_csv(my_csv_file)
-data = pd.read_csv(my_csv_file, sep='\s+|,',header=None) #works for data without header
-print(data.head())
-print(data.shape)
+#data = pd.read_csv(my_csv_file, sep='\s+|,',skiprows=[0],header=None, engine='python')
+data = pd.read_csv(my_csv_file, sep='\s+|,', engine='python') #for data with default header
+print("Data Preview","\n",data.head())
+print("\n",data.shape)
 
-#2 Organize file to access columns and rows
-#2a. access any row "Pandas access rows"
-print(data.iloc[3:5,:])
-#2b. access any column "Pandas access column"
-print(data.iloc[:,3])
-#2c access any data
-print(data.iloc[0,0])
+# This session  Accesses Rows and Columns
 
-#3. Compute Statistics
-#a. Mean
+print("\n","Rows 3 and 4","\n",data.iloc[3:5,:]) #Access Row
+print("\n", "Column 3" "\n", data.iloc[:,3]) #Access Column
+
+
+# This session computes Summary Statistics (Mean and Standard Deviation)
 
 import numpy as np
 
-print(np.mean(data))
-print(np.std(data))
+print("\n","Mean of Features","\n",np.mean(data,axis=0))
+print("\n")
+print("Standard Deviation of Features", "\n", np.std(data,axis=0))
+
+# This session is for plotting
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# This session plots Histogram of each feature (column)
+
+for i, column in enumerate(data.columns):
+	plt.figure(i)
+	sns.distplot(data[column])
+	plt.savefig('{}.pdf'.format(column))
+plt.show()
+plt.close()
+
+# This session plots Scatterplot for any 2 pairs of features (columns)
+
+for i in range(data.shape[1]-1):
+	for j in range(i+1):
+		plt.figure(j)
+		sns.scatterplot(data.iloc[:,i+1], data.iloc[:,j+1])
+	plt.figure(i)
+	sns.scatterplot(data.iloc[:,0], data.iloc[:,i+1])
+	plt.show()
+	plt.savefig('{}.pdf'.format(i,j))  #Only saves 10 of my files (The rest 45 overwrites)
+#plt.show()
+
+#  REACH
+# This session plots KDE plots for 2 pairs of features
+
+for x in range(data.shape[1]-1):
+	for y in range(x+1):
+		plt.figure(y)
+		sns.kdeplot(data.iloc[:,x+1], data.iloc[:,y+1])
+	plt.figure(x)
+	sns.kdeplot(data.iloc[:,0], data.iloc[:, x+1])
+	plt.show()
+
+
