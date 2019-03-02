@@ -1,0 +1,45 @@
+1. Load Data
+- get filename from user (using argparse NOT input for automation)
+-(optionally) get header file from user (also in argparse)
+-ensure file exists (using os.path.isfile)
+-read first line(s) - enough so we can see outliers
+-(a) look at it
+-(b)check type of each row in each column, and see if consistent
+	-open file, readlines(),
+	-redo the long csv reader we made few weeks ago
+-(c) OR, just load the data and we'll do it twice (trade-off)
+-
+
+2. Organize data (adding header)
+-if we have a header in our data file:
+	- load it, tell pandas to look in the first role for header
+-otherwise....
+	- if header file provided:
+	-load header file("open" and "read()" of the file)
+	-verify that the number of columns matches number of columns in data
+	-Otherwise:
+	 -(a) throw an exception and exit
+	 -(b) move on without a header
+	- add header
+
+3. Compute Summary Statistics (Mean, Std per column)
+	np.mean(dataframe)
+	np.std(dataframe)
+
+4. Plot each column by itself (Histogram)
+- for column in dataframe.columns:
+	-data=dataframe[column]
+	-newfig = creating a new blank figure
+	-plot histogram on newfig
+	-save newfig with name determined by column
+	-"histogram_column:{0}.pdf".format(column)
+
+5. Plot pairs of columns (scatter plot)
+-for idx, column1 in enumerate(dataframe):
+	-for jdx, column2 in dataframe.iloc[:, idx+1:]:
+		data1 = dataframe[column1]
+		data2 = dataframe[column2]
+		-plt.scatter(data1, data2)
+		--##Other housekeeping details to save like last time
+		-("Scatter_{0}_{1}.pdf".format(column1,column2))
+	
