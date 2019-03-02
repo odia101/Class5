@@ -69,7 +69,7 @@ for i in range(data.shape[1]-1):
 	plt.figure(i)
 	sns.scatterplot(data.iloc[:,0], data.iloc[:,i+1])
 	plt.show()
-	plt.savefig('{}.pdf'.format(i,j))  #Only saves 10 of my files (The rest 45 overwrites)
+	plt.savefig('{}{}.pdf'.format(i,j))  #Only saves 10 of my files (The rest 45 overwrites)
 #plt.show()
 
 #  REACH
