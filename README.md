@@ -1,4 +1,8 @@
 # Class5
+#INSTRUCTION TO RUN THE SCRIPT
+$ python generic_parser.py diabetes.tab.txt
+
+
 
 PSEUDOCODE FOR ANALYSIS ON DIABETES DATA
 
