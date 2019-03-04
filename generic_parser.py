@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+
+
 from argparse import ArgumentParser
 
 parser = ArgumentParser(description='A CSV reader + stats makes')
@@ -56,31 +59,35 @@ import seaborn as sns
 for i, column in enumerate(data.columns):
 	plt.figure(i)
 	sns.distplot(data[column])
-	plt.savefig('{}.pdf'.format(column))
+	plt.savefig('histogram_''{0}.pdf'.format(column))
 plt.show()
 plt.close()
 
 # This session plots Scatterplot for any 2 pairs of features (columns)
 
-for i in range(data.shape[1]-1):
-	for j in range(i+1):
-		plt.figure(j)
-		sns.scatterplot(data.iloc[:,i+1], data.iloc[:,j+1])
-	plt.figure(i)
-	sns.scatterplot(data.iloc[:,0], data.iloc[:,i+1])
-	plt.show()
-	plt.savefig('{}{}.pdf'.format(i,j))  #Only saves 10 of my files (The rest 45 overwrites)
-#plt.show()
+for i, column1 in enumerate(data.columns):
+	for j, column2 in enumerate (data.columns[i+1:]):
+		#print (column1, column2)
+		data1 = data[column1]
+		data2 = data[column2]
+		plt.figure()
+		sns.scatterplot(data1, data2)
+		plt.savefig("Scatterplot_{}_{}.pdf".format(column1, column2))
+plt.show()
+plt.close()
+
+
 
 #  REACH
 # This session plots KDE plots for 2 pairs of features
 
-for x in range(data.shape[1]-1):
-	for y in range(x+1):
-		plt.figure(y)
-		sns.kdeplot(data.iloc[:,x+1], data.iloc[:,y+1])
-	plt.figure(x)
-	sns.kdeplot(data.iloc[:,0], data.iloc[:, x+1])
-	plt.show()
-
+for x, column1 in enumerate (data.columns):
+	for y, column2 in enumerate(data.columns[x+1:]):
+		data3 = data[column1]
+		data4 = data[column2]
+		plt.figure()
+		sns.kdeplot(data3, data4)
+		plt.savefig("KDE_Plot_{}_{}.pdf".format(column1, column2))
+plt.show()
+plt.close()
 
